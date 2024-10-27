@@ -10,17 +10,24 @@ public class OldSelection {
 	 * returns name, and if TextBook, returns subject.
 	 */
 	public static String getAgeOrTitle(Object o) {
-		
-		if (o instanceof Book) {
-			
-		}
-		return null;
+		return switch(o) {
+			case Comic c -> c.getTitle();
+			case Fiction f -> f.getName();
+			case TextBook t -> t.getSubject();
+			default -> "";
+		};
 	}
 
 	public static void main(String[] args) {
 		
 		// TODO: Write a test code here and execute and text.
-		TextBook t = new TextBook();
+		TextBook t = new TextBook("Data Structures by CLRS");
+		Comic c = new Comic("Iron Man",35);
+		Fiction f=new Fiction("Macbeth",FictionType.Tragedy);
+		
+		System.out.println(OldSelection.getAgeOrTitle(t));
+		System.out.println(OldSelection.getAgeOrTitle(c));
+		System.out.println(OldSelection.getAgeOrTitle(f));
 		
 	}
 }
